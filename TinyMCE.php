@@ -95,12 +95,13 @@ class TinyMCE extends InputWidget
 	
 	public function __set($name, $value)
 	{
-		if (method_exists($this, 'set' . ucfirst($name)))
+		if (method_exists($this, 'set' . ucfirst($name))) {
 			parent::__set($name, $value);
-		elseif (isset($this->{$name}))
+		} elseif (isset($this->{$name})) {
 			$this->{$name} = $value;
-		else
+		} else {
 			$this->config[$name] = $value;
+		}
 	}
 	
 	public function setToggle($value)
@@ -122,11 +123,13 @@ class TinyMCE extends InputWidget
 		], $this->config);
 		
 		$this->config['fontsize_formats'] = "6pt 7pt 8pt 9pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 18pt 20pt 24pt 28pt 36pt 40pt 48pt";
-		if (!isset($this->options['rows']))
+		if (!isset($this->options['rows'])) {
 			$this->options['rows'] = 10;
+		}
 				
-		if (!empty($this->toolbar))
+		if (!empty($this->toolbar)) {
 			$this->config['toolbar'] = implode(' | ', $this->toolbar);
+		}
 		
 		if (!empty($this->removeToolbar)) {
 			foreach ($this->removeToolbar as $toolbar) {
@@ -134,14 +137,13 @@ class TinyMCE extends InputWidget
 			}
 		}
 		
-		if ($this->toggle['active'])
-		{
-			if (!isset($this->toggle['id']))
+		if ($this->toggle['active']) {
+			if (!isset($this->toggle['id'])) {
 				$this->toggle['id'] = $this->getId();
+			}
 		}
 		
-		if ($this->showAdvancedImageTab)
-			$this->config['image_advtab'] = 'true';
+		$this->config['image_advtab'] = $this->showAdvancedImageTab;
 	}
 	
 	public function run()
@@ -152,13 +154,15 @@ class TinyMCE extends InputWidget
 	
 	protected function renderInput()
 	{
-		if ($this->hasModel())
+		if ($this->hasModel()) {
 			$input = Html::activeTextarea($this->model, $this->attribute, $this->options);
-		else 
+		} else {
 			$input = Html::textarea($this->name, $this->value, $this->options);
+		}
 		
-		if ($this->toggle['active'])
+		if ($this->toggle['active']) {
 			$input = $this->prepareToggle($input);
+		}
 		
 		return $input;
 	}
@@ -182,10 +186,11 @@ class TinyMCE extends InputWidget
 	{
 		$view = $this->getView();
 		
-		if (isset($this->selector))
+		if (isset($this->selector)) {
 			$id = $this->selector;
-		else
+		} else {
 			$id = '#' . $this->options['id'];
+		}
 		
 		$this->config = ArrayHelper::merge(['selector' => $id], $this->config);
 		
@@ -202,7 +207,8 @@ class TinyMCE extends InputWidget
 			$view->registerJs("toggleTiny{$toggle}=function(){tinymce.init({$options});};\nunToggleTiny{$toggle}=function(){tinymce.remove('{$id}')};\n$start");
 		} elseif (isset($this->functionName)) {
 			$view->registerJs("{$this->functionName}=function(){tinymce.init({$options})}");
-		} else
+		} else {
 			$view->registerJs("tinymce.init({$options})");
+		}
 	}
 }
