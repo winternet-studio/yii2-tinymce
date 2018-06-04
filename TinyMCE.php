@@ -1,5 +1,5 @@
 <?php
-namespace moonland\tinymce;
+namespace winternet\tinymce;
 
 use yii\helpers\ArrayHelper;
 use yii\widgets\InputWidget;
@@ -13,7 +13,7 @@ use moonland\helpers\JSON;
  * 
  * ~~~
  * [php]
- * use moonland\tinymce\TinyMCE;
+ * use winternet\tinymce\TinyMCE;
  * 
  * echo TinyMCE::widget(['name' => 'text-content']);
  * 

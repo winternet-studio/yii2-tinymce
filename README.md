@@ -1,8 +1,9 @@
-moonlandsoft/yii2-tinymce
+winternet-studio/yii2-tinymce
 =========================
 The TinyMCE Extension for yii framework
 
-[![Latest Stable Version](https://poser.pugx.org/moonlandsoft/yii2-tinymce/v/stable)](https://packagist.org/packages/moonlandsoft/yii2-tinymce) [![Total Downloads](https://poser.pugx.org/moonlandsoft/yii2-tinymce/downloads)](https://packagist.org/packages/moonlandsoft/yii2-tinymce) [![Latest Unstable Version](https://poser.pugx.org/moonlandsoft/yii2-tinymce/v/unstable)](https://packagist.org/packages/moonlandsoft/yii2-tinymce) [![License](https://poser.pugx.org/moonlandsoft/yii2-tinymce/license)](https://packagist.org/packages/moonlandsoft/yii2-tinymce)
+Forked from [Kaile/yii2-tinymce](https://github.com/Kaile/yii2-tinymce) who forked it from the original author [moonlandsoft/yii2-tinymce](https://github.com/moonlandsoft/yii2-tinymce)
+
 
 Installation
 ------------
@@ -12,13 +13,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist moonlandsoft/yii2-tinymce "*"
+php composer.phar require --prefer-dist winternet-studio/yii2-tinymce "*"
 ```
 
 or add
 
 ```
-"moonlandsoft/yii2-tinymce": "*"
+"winternet-studio/yii2-tinymce": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -30,7 +31,7 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-use moonland\tinymce\TinyMCE;
+use winternet\tinymce\TinyMCE;
 
 echo TinyMCE::widget(['name' => 'text-content']);
 
