@@ -12,7 +12,7 @@
         {
             "name": "Allan Jensen",
             "email": "github-contributor888@allanid.com"
-        },
+        }
     ],
     "require": {
         "yiisoft/yii2": "*",
