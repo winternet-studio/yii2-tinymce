@@ -127,7 +127,7 @@ class TinyMCE extends InputWidget
 		}
 				
 		if (!empty($this->toolbar)) {
-			$this->config['toolbar'] = implode(' | ', $this->toolbar);
+			$this->config['toolbar'] = $this->toolbar;
 		}
 		
 		if (!empty($this->removeToolbar)) {
