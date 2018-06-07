@@ -6910,12 +6910,12 @@ var table = (function () {
           items: hasAppearanceOptions(editor) ? [
             colsCtrl,
             rowsCtrl,
+            {
+              label: 'Width',
+              name: 'width',
+              onchange: $_bgyjg9kejh8lz1ax.curry($_7mumlpo4jh8lz1zt.updateStyleField, editor)
+            },
             // WINTERNET-STUDIO CUSTOMIZATION: Deactivate form fields
-            // {
-            //   label: 'Width',
-            //   name: 'width',
-            //   onchange: $_bgyjg9kejh8lz1ax.curry($_7mumlpo4jh8lz1zt.updateStyleField, editor)
-            // },
             // {
             //   label: 'Height',
             //   name: 'height',
