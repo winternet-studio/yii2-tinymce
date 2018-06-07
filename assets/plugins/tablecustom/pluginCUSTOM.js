@@ -6115,13 +6115,12 @@ var table = (function () {
                 // }
               ]
             },
-            // WINTERNET-STUDIO CUSTOMIZATION: Deactivate form fields
-            // {
-            //   label: 'Border color',
-            //   type: 'colorbox',
-            //   name: 'borderColor',
-            //   onaction: createColorPickAction()
-            // },
+            {
+              label: 'Border color',
+              type: 'colorbox',
+              name: 'borderColor',
+              onaction: createColorPickAction()
+            },
             {
               label: 'Background color',
               type: 'colorbox',
@@ -6401,7 +6400,22 @@ var table = (function () {
             type: 'form',
             items: generalCellForm
           },
+          // WINTERNET-STUDIO CUSTOMIZATION: Remove field "Border color", we only want that in Table properties, not in Cell properties (by using this self-calling function to do the work)
+          function() {
+            var tmp = 
           $_7mumlpo4jh8lz1zt.createStyleForm(editor)
+            ; // Above is the original line untouched, now we want to modify tmp:
+            $.each(tmp.items, function(indx, val) {
+              if (val.items) {
+                $.each(val.items, function(indx2, val2) {
+                  if (val2.name == 'borderColor') {
+                    delete val.items[indx2];
+                  }
+                })
+              }
+            });
+            return tmp;
+          }()
         ],
         onsubmit: $_bgyjg9kejh8lz1ax.curry(onSubmitCellForm, editor, cells)
       });
