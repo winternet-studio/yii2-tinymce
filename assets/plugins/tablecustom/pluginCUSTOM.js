@@ -4572,6 +4572,8 @@ var table = (function () {
 
   var resizeBar = $_ezk1iinbjh8lz1uu.resolve('resizer-bar');
   var resizeRowBar = $_ezk1iinbjh8lz1uu.resolve('resizer-rows');
+  // WINTERNET-STUDIO CUSTOMIZATION: Override to not generate the CSS class name ephox-snooker-resizer-rows that causes cursor:row-resize (we don't allow resizing row height by dragging its borders)
+  resizeRowBar = $_ezk1iinbjh8lz1uu.resolve('some-just-nonexisting-class');
   var resizeColBar = $_ezk1iinbjh8lz1uu.resolve('resizer-cols');
   var BAR_THICKNESS = 7;
   var clear = function (wire) {
@@ -7798,8 +7800,9 @@ var table = (function () {
       resizing.go(wire.parent());
     };
     var mousedown = $_5cpulvonjh8lz24a.bind(wire.parent(), 'mousedown', function (event) {
-      if ($_b9z1gin7jh8lz1tj.isRowBar(event.target()))
-        handler(event.target(), 'top');
+      // WINTERNET-STUDIO CUSTOMIZATION: Outcommented next to lines to disable resizing row height by dragging the borders
+      // if ($_b9z1gin7jh8lz1tj.isRowBar(event.target()))
+      //   handler(event.target(), 'top');
       if ($_b9z1gin7jh8lz1tj.isColBar(event.target()))
         handler(event.target(), 'left');
     });
