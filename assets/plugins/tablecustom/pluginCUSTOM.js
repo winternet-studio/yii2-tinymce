@@ -6008,6 +6008,11 @@ var table = (function () {
       css['background-color'] = data.backgroundColor;
       css.width = data.width ? addSizeSuffix(data.width) : '';
       css.height = data.height ? addSizeSuffix(data.height) : '';
+      // WINTERNET-STUDIO CUSTOMIZATION: Added save the 4 CSS properties for padding when values are changed
+      css['padding-bottom'] = ''+ parseFloat(data.paddingBottom) +'mm';
+      css['padding-left'] = ''+ parseFloat(data.paddingLeft) +'mm';
+      css['padding-right'] = ''+ parseFloat(data.paddingRight) +'mm';
+      css['padding-top'] = ''+ parseFloat(data.paddingTop) +'mm';
     }
     rootControl.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
   };
@@ -6022,6 +6027,56 @@ var table = (function () {
     }
     if (css['background-color']) {
       data.backgroundColor = css['background-color'];
+    }
+    // WINTERNET-STUDIO CUSTOMIZATION: Added setting the 4 CSS properties for padding when dialog box is opened
+    if (css['padding']) {
+      if (css['padding'].indexOf(' ') > -1) {
+        // multiple values
+        var values = css['padding'].split(/\s+/g);
+        if (values.length == 2) {
+          data.paddingTop = values[0];
+          data.paddingBottom = values[0];
+          data.paddingLeft = values[1];
+          data.paddingRight = values[1];
+        } else if (values.length == 3) {
+          data.paddingTop = values[0];
+          data.paddingLeft = values[1];
+          data.paddingRight = values[1];
+          data.paddingBottom = values[2];
+        } else if (values.length == 4) {
+          data.paddingTop = values[0];
+          data.paddingRight = values[1];
+          data.paddingBottom = values[2];
+          data.paddingLeft = values[3];
+        }
+      } else {
+        // single value
+        data.paddingBottom = css['padding'];
+        data.paddingLeft = css['padding'];
+        data.paddingRight = css['padding'];
+        data.paddingTop = css['padding'];
+      }
+    } else {
+      if (css['padding-bottom']) {
+        data.paddingBottom = css['padding-bottom'];
+      } else {
+        data.paddingBottom = '0mm';
+      }
+      if (css['padding-left']) {
+        data.paddingLeft = css['padding-left'];
+      } else {
+        data.paddingLeft = '0mm';
+      }
+      if (css['padding-right']) {
+        data.paddingRight = css['padding-right'];
+      } else {
+        data.paddingRight = '0mm';
+      }
+      if (css['padding-top']) {
+        data.paddingTop = css['padding-top'];
+      } else {
+        data.paddingTop = '0mm';
+      }
     }
     data.style = dom.serializeStyle(css);
     return data;
@@ -6270,13 +6325,20 @@ var table = (function () {
           padding: 0,
           defaults: {
             type: 'textbox',
-            maxWidth: 50
+            // WINTERNET-STUDIO CUSTOMIZATION: Increase maxWidth from 50 to 90 so entire value can be seen
+            maxWidth: 90
           },
           items: [
             {
               label: 'Width',
               name: 'width',
               onchange: $_bgyjg9kejh8lz1ax.curry($_7mumlpo4jh8lz1zt.updateStyleField, editor)
+            },
+            // WINTERNET-STUDIO CUSTOMIZATION: Add spacer to align the inputs more logically in the dialog box
+            {
+              label: '',
+              name: 'style',
+              type: 'spacer'
             },
             // WINTERNET-STUDIO CUSTOMIZATION: Deactivate form fields
             // {
@@ -6383,6 +6445,30 @@ var table = (function () {
                   value: 'bottom'
                 }
               ]
+            },
+            {
+              label: 'Margin top',
+              type: 'textbox',
+              name: 'paddingTop',
+              onchange: $_bgyjg9kejh8lz1ax.curry($_7mumlpo4jh8lz1zt.updateStyleField, editor)
+            },
+            {
+              label: 'Margin left',
+              type: 'textbox',
+              name: 'paddingLeft',
+              onchange: $_bgyjg9kejh8lz1ax.curry($_7mumlpo4jh8lz1zt.updateStyleField, editor)
+            },
+            {
+              label: 'Margin bottom',
+              type: 'textbox',
+              name: 'paddingBottom',
+              onchange: $_bgyjg9kejh8lz1ax.curry($_7mumlpo4jh8lz1zt.updateStyleField, editor)
+            },
+            {
+              label: 'Margin right',
+              type: 'textbox',
+              name: 'paddingRight',
+              onchange: $_bgyjg9kejh8lz1ax.curry($_7mumlpo4jh8lz1zt.updateStyleField, editor)
             }
           ]
         },
