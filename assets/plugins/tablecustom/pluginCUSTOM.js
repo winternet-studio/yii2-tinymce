@@ -10060,8 +10060,7 @@ var table = (function () {
   var each$4 = global$2.each;
   var addButtons = function (editor) {
     var menuItems = [];
-    // WINTERNET-STUDIO CUSTOMIZATION: Removed " | cell row column" from the end of the string in the next line (regarding the toolbar table button)
-    each$4('inserttable tableprops deletetable'.split(' '), function (name) {
+    each$4('inserttable tableprops deletetable | cell row column'.split(' '), function (name) {
       if (name === '|') {
         menuItems.push({ text: '-' });
       } else {
@@ -10349,14 +10348,103 @@ var table = (function () {
       onPostRender: pushTable,
       cmd: 'mceTableDelete'
     };
-    // WINTERNET-STUDIO CUSTOMIZATION: Deleted row, column, and cell variables with the details for those submenus (regarding the toolbar table button)
+    var row = {
+      text: 'Row',
+      context: 'table',
+      menu: [
+        {
+          text: 'Insert row before',
+          onclick: cmd('mceTableInsertRowBefore'),
+          onPostRender: pushCell
+        },
+        {
+          text: 'Insert row after',
+          onclick: cmd('mceTableInsertRowAfter'),
+          onPostRender: pushCell
+        },
+        {
+          text: 'Delete row',
+          onclick: cmd('mceTableDeleteRow'),
+          onPostRender: pushCell
+        },
+        // WINTERNET-STUDIO CUSTOMIZATION: Remove Row properties (regarding the toolbar table button)
+        // {
+        //   text: 'Row properties',
+        //   onclick: cmd('mceTableRowProps'),
+        //   onPostRender: pushCell
+        // },
+        { text: '-' },
+        {
+          text: 'Cut row',
+          onclick: cmd('mceTableCutRow'),
+          onPostRender: pushCell
+        },
+        {
+          text: 'Copy row',
+          onclick: cmd('mceTableCopyRow'),
+          onPostRender: pushCell
+        },
+        {
+          text: 'Paste row before',
+          onclick: cmd('mceTablePasteRowBefore'),
+          onPostRender: pushCell
+        },
+        {
+          text: 'Paste row after',
+          onclick: cmd('mceTablePasteRowAfter'),
+          onPostRender: pushCell
+        }
+      ]
+    };
+    var column = {
+      text: 'Column',
+      context: 'table',
+      menu: [
+        {
+          text: 'Insert column before',
+          onclick: cmd('mceTableInsertColBefore'),
+          onPostRender: pushCell
+        },
+        {
+          text: 'Insert column after',
+          onclick: cmd('mceTableInsertColAfter'),
+          onPostRender: pushCell
+        },
+        {
+          text: 'Delete column',
+          onclick: cmd('mceTableDeleteCol'),
+          onPostRender: pushCell
+        }
+      ]
+    };
+    var cell = {
+      separator: 'before',
+      text: 'Cell',
+      context: 'table',
+      menu: [
+        {
+          text: 'Cell properties',
+          onclick: cmd('mceTableCellProps'),
+          onPostRender: pushCell
+        },
+        {
+          text: 'Merge cells',
+          onclick: cmd('mceTableMergeCells'),
+          onPostRender: pushMerge
+        },
+        {
+          text: 'Split cell',
+          onclick: cmd('mceTableSplitCells'),
+          onPostRender: pushUnmerge
+        }
+      ]
+    };
     editor.addMenuItem('inserttable', insertTable);
     editor.addMenuItem('tableprops', tableProperties);
     editor.addMenuItem('deletetable', deleteTable);
-    // WINTERNET-STUDIO CUSTOMIZATION: Deactivated all the below menu items (regarding the toolbar table button)
-    // editor.addMenuItem('row', row);
-    // editor.addMenuItem('column', column);
-    // editor.addMenuItem('cell', cell);
+    editor.addMenuItem('row', row);
+    editor.addMenuItem('column', column);
+    editor.addMenuItem('cell', cell);
   };
   var $_g08j12qajh8lz2h4 = { addMenuItems: addMenuItems };
 
