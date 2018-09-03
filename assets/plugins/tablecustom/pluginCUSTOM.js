@@ -10441,6 +10441,14 @@ var table = (function () {
       text: 'Row',
       context: 'table',
       menu: [
+        // WINTERNET-STUDIO CUSTOMIZATION: Add toolbar button menu item for setting border colors
+        {
+          text: 'Borders',
+          onclick: function(evnt) {
+          	LayoutCreate.tinymceCustomTablePlugin_RowBorders(evnt, editor);
+          }
+        },
+        { text: '-' },
         {
           text: 'Insert row before',
           onclick: cmd('mceTableInsertRowBefore'),
@@ -10489,6 +10497,14 @@ var table = (function () {
       text: 'Column',
       context: 'table',
       menu: [
+        // WINTERNET-STUDIO CUSTOMIZATION: Add toolbar button menu item for setting border colors
+        {
+          text: 'Borders',
+          onclick: function(evnt) {
+          	LayoutCreate.tinymceCustomTablePlugin_ColumnBorders(evnt, editor);
+          }
+        },
+        { text: '-' },
         {
           text: 'Insert column before',
           onclick: cmd('mceTableInsertColBefore'),
