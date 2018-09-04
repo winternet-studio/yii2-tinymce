@@ -12,4 +12,6 @@ class TinyMCEAsset extends AssetBundle
 	public $js = [
 		'tinymce.min.js',
 	];
+
+	// public $publishOptions = ['forceCopy' => true];
 }
