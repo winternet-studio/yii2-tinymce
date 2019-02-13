@@ -193,7 +193,8 @@ var autoresize = (function () {
   };
   var $_a778x48mjh8lyzss = { register: register };
 
-  global.add('autoresize', function (editor) {
+  // WINTERNET-STUDIO CUSTOMIZATION: Changed name of the plugin to make it work alongside the original plugin
+  global.add('autoresizecustom', function (editor) {
     if (!editor.inline) {
       var oldSize = Cell(0);
       $_a778x48mjh8lyzss.register(editor, oldSize);
