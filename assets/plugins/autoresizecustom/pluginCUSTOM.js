@@ -68,6 +68,13 @@ var autoresize = (function () {
       body.style.overflowY = state ? '' : 'hidden';
       if (!state) {
         body.scrollTop = 0;
+	    // WINTERNET-STUDIO CUSTOMIZATION: Not enough to only adjust body.scrollTop for Firefox, need to adjust document.documentElement.scrollTop as well
+        try {
+          // For Firefox we need to set this as well - otherwise it might not actually have been scrolled to the top (see https://stackoverflow.com/questions/28633221/document-body-scrolltop-firefox-returns-0-only-js)
+          body.ownerDocument.documentElement.scrollTop = 0;
+        } catch (e) {
+          // do nothing
+        }
       }
     }
   };
